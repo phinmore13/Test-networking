@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EntrepreneurHub - Connect with entrepreneurs for free</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Platzi Color Palette */
+            --primary: #98CA3F;  /* Platzi Green */
+            --primary-dark: #7CAD2B;
+            --primary-light: #B8E059;
+            --secondary: #121F3D;  /* Platzi Dark Blue */
+            --secondary-light: #1C2E4C;
+            --text-primary: #1C1D21;
+            --text-secondary: #6B7280;
+            --bg-light: #F7F8FA;
+            --bg-white: #FFFFFF;
+            --bg-dark: #0E1525;
+            --border: #E5E7EB;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 16px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+        }
+        
+        /* Header */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.625rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg-white));
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 0.875rem 1.25rem;
+            font-size: 1rem;
+            outline: none;
+            color: var(--text-primary);
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-btn {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+        
+        .explore-btn {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0.875rem 2.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: inline-block;
+        }
+        
+        .explore-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(152, 202, 63, 0.4);
+        }
+        
+        /* Global Filters */
+        .filters-section {
+            background: var(--bg-light);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .filter-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .filter-select {
+            padding: 0.625rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+            font-size: 0.95rem;
+            min-width: 150px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        
+        .filter-select:hover {
+            border-color: var(--primary);
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(152, 202, 63, 0.1);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        /* Cluster Grid */
+        .clusters-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .cluster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cluster-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cluster-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .cluster-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .cluster-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cluster-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+        
+        .cluster-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            line-height: 1.4;
+        }
+        
+        .cluster-count {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .source-tag {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        /* Featured Entrepreneurs */
+        .entrepreneurs-section {
+            margin-bottom: 4rem;
+        }
+        
+        .entrepreneur-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg-light);
+        }
+        
+        .entrepreneur-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .entrepreneur-scroll::-webkit-scrollbar-track {
+            background: var(--bg-light);
+            border-radius: 4px;
+        }
+        
+        .entrepreneur-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .entrepreneur-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            min-width: 340px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .entrepreneur-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .entrepreneur-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .entrepreneur-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-light);
+        }
+        
+        .entrepreneur-info {
+            flex: 1;
+        }
+        
+        .entrepreneur-name {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--secondary);
+            margin-bottom: 0.125rem;
+        }
+        
+        .entrepreneur-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.125rem;
+        }
+        
+        .entrepreneur-company {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .entrepreneur-bio {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .entrepreneur-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .tag:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .contact-btn {
+            flex: 1;
+            padding: 0.625rem;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+        
+        .contact-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+        
+        /* Cluster Detail View */
+        .cluster-detail {
+            display: none;
+        }
+        
+        .cluster-detail.active {
+            display: block;
+        }
+        
+        .breadcrumbs {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        
+        .cluster-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+        }
+        
+        .cluster-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cluster-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .cluster-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .detail-filters {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+        }
+        
+        .entrepreneurs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(18, 31, 61, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: var(--bg-light);
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: block;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+        }
+        
+        .modal-name {
+            text-align: center;
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .modal-role {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-company {
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+        
+        .modal-bio {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .expertise-section {
+            margin-bottom: 2rem;
+        }
+        
+        .expertise-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .copy-contact-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .copy-contact-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            z-index: 2000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .toast.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .footer-section p {
+            opacity: 0.9;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .cluster-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .entrepreneurs-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-select {
+                width: 100%;
+            }
+            
+            .entrepreneur-card {
+                min-width: 100%;
+            }
+        }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        *:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        button:focus,
+        a:focus {
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="EntrepreneurHub Home">EntrepreneurHub</a>
+            <div class="nav-links">
+                <a href="#clusters">Clusters</a>
+                <a href="#entrepreneurs">Entrepreneurs</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-secondary">Sign in</button>
+                <button class="btn btn-primary">Join</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Connect with entrepreneurs for free</h1>
+                <p class="hero-subtitle">Discover, network, and collaborate with entrepreneurs across different industry clusters</p>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="hero-search" placeholder="Search by name, company, or industry..." aria-label="Search entrepreneurs">
+                    <button class="search-btn" onclick="performSearch()">Search</button>
+                </div>
+                <button class="explore-btn" onclick="scrollToClusters()">Explore by Cluster</button>
+            </div>
+        </section>
+
+        <!-- Global Filters -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label class="filter-label" for="location-filter">Location</label>
+                    <select class="filter-select" id="location-filter" onchange="filterEntrepreneurs()">
+                        <option value="">All Locations</option>
+                        <option value="Bogotá, Colombia">Bogotá, Colombia</option>
+                        <option value="Medellín, Colombia">Medellín, Colombia</option>
+                        <option value="Cali, Colombia">Cali, Colombia</option>
+                        <option value="Mexico City, Mexico">Mexico City, Mexico</option>
+                        <option value="São Paulo, Brazil">São Paulo, Brazil</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="tag-filter">Tags</label>
+                    <select class="filter-select" id="tag-filter" onchange="filterEntrepreneurs()">
+                        <option value="">All Tags</option>
+                        <option value="AI">AI</option>
+                        <option value="Fintech">Fintech</option>
+                        <option value="E-commerce">E-commerce</option>
+                        <option value="SaaS">SaaS</option>
+                        <option value="Blockchain">Blockchain</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" for="availability-filter">Availability</label>
+                    <select class="filter-select" id="availability-filter" onchange="filterEntrepreneurs()">
+                        <option value="">Any</option>
+                        <option value="yes">Available</option>
+                        <option value="no">Not Available</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Clusters Section -->
+            <section class="clusters-section" id="clusters">
+                <div class="section-header">
+                    <h2 class="section-title">Industry Clusters</h2>
+                </div>
+                <div class="cluster-grid" id="cluster-grid">
+                    <!-- Clusters will be dynamically generated -->
+                </div>
+            </section>
+
+            <!-- Featured Entrepreneurs -->
+            <section class="entrepreneurs-section" id="entrepreneurs">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Entrepreneurs</h2>
+                </div>
+                <div class="entrepreneur-scroll" id="entrepreneur-scroll">
+                    <!-- Entrepreneurs will be dynamically generated -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Cluster Detail Page -->
+    <div id="cluster-detail" class="cluster-detail">
+        <div class="main-content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb navigation">
+                <a href="#" onclick="showLanding(); return false;">Home</a> → <span id="breadcrumb-cluster">Cluster Name</span>
+            </nav>
+            
+            <div class="cluster-header">
+                <h1 class="cluster-title" id="cluster-title">Cluster Name</h1>
+                <p class="cluster-description">Connect with innovative entrepreneurs and businesses in this dynamic sector</p>
+                <div class="cluster-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="cluster-count">0</span>
+                        <span>Entrepreneurs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-filters">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label class="filter-label" for="role-filter">Role</label>
+                        <select class="filter-select" id="role-filter" onchange="filterClusterEntrepreneurs()">
+                            <option value="">All Roles</option>
+                            <option value="Founder">Founder</option>
+                            <option value="CEO">CEO</option>
+                            <option value="CTO">CTO</option>
+                            <option value="Designer">Designer</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="sort-filter">Sort by</label>
+                        <select class="filter-select" id="sort-filter" onchange="sortEntrepreneurs()">
+                            <option value="recent">Most Recent</option>
+                            <option value="alpha">Alphabetical</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entrepreneurs-list" id="cluster-entrepreneurs">
+                <!-- Cluster entrepreneurs will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal" role="dialog" aria-labelledby="modal-name" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body">
+                <img class="modal-avatar" id="modal-avatar" src="" alt="">
+                <h2 class="modal-name" id="modal-name">Name</h2>
+                <p class="modal-role" id="modal-role">Role</p>
+                <p class="modal-company" id="modal-company">Company</p>
+                <p class="modal-bio" id="modal-bio">Bio</p>
+                
+                <div class="expertise-section">
+                    <h3 class="expertise-title">Expertise</h3>
+                    <div class="entrepreneur-tags" id="modal-tags">
+                        <!-- Tags will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <div class="contact-buttons" id="modal-contacts">
+                    <!-- Contact buttons will be dynamically generated -->
+                </div>
+                
+                <button class="copy-contact-btn" onclick="copyContactInfo()">Copy contact info</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="alert">
+        Contact information copied!
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EntrepreneurHub</h3>
+                <p>Connecting entrepreneurs worldwide</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <div class="footer-links">
+                    <a href="#blog">Blog</a>
+                    <a href="#events">Events</a>
+                    <a href="#guides">Guides</a>
+                    <a href="#success-stories">Success Stories</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    <a href="#twitter">Twitter</a>
+                    <a href="#linkedin">LinkedIn</a>
+                    <a href="#facebook">Facebook</a>
+                    <a href="#instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock Data
+        const clusters = [
+            { name: "Commerce (Wholesale & Retail)", source: "Mincit", icon: "🛒" },
+            { name: "Services – Professional, scientific & technical (CIIU M)", source: "Mincit", icon: "🔬" },
+            { name: "Services – Real estate (CIIU L)", source: "Confecámaras", icon: "🏢" },
+            { name: "Services – Administrative & support (CIIU N)", source: "Mincit", icon: "📋" },
+            { name: "Accommodation & Food Services (CIIU I)", source: "Confecámaras", icon: "🏨" },
+            { name: "Transportation & Warehousing (CIIU H)", source: "Mincit", icon: "🚚" },
+            { name: "Information & Communications (CIIU J)", source: "Mincit", icon: "💻" },
+            { name: "Health & Social Assistance (CIIU Q)", source: "Mincit", icon: "🏥" },
+            { name: "Education (private) (CIIU P)", source: "Mincit", icon: "🎓" },
+            { name: "Arts, Entertainment & Recreation (CIIU R)", source: "Mincit", icon: "🎨" },
+            { name: "Other Personal Services (CIIU S)", source: "Mincit", icon: "✨" },
+            { name: "Finance & Insurance (CIIU K)", source: "Mincit", icon: "💰" },
+            { name: "Manufacturing (CIIU C)", source: "Mincit", icon: "🏭" },
+            { name: "Construction (CIIU F)", source: "Mincit", icon: "🏗️" }
+        ];
+
+        const entrepreneurs = [
+            {
+                id: "e1",
+                name: "María García",
+                photoUrl: "https://picsum.photos/seed/maria/320/320",
+                role: "Founder & CEO",
+                company: "TechSolutions Colombia",
+                location: "Bogotá, Colombia",
+                cluster: "Information & Communications (CIIU J)",
+                tags: ["AI", "Machine Learning", "SaaS"],
+                bio: "Building AI-powered solutions for Latin American businesses. Passionate about making technology accessible.",
+                contact: {
+                    email: "maria@techsolutions.co",
+                    linkedin: "https://linkedin.com/in/mariagarcia",
+                    website: "https://techsolutions.co"
+                },
+                available: true
+            },
+            {
+                id: "e2",
+                name: "Carlos Rodríguez",
+                photoUrl: "https://picsum.photos/seed/carlos/320/320",
+                role: "CTO",
+                company: "FinanceFlow",
+                location: "Mexico City, Mexico",
+                cluster: "Finance & Insurance (CIIU K)",
+                tags: ["Fintech", "Blockchain", "Payments"],
+                bio: "Revolutionizing digital payments in emerging markets with blockchain technology.",
+                contact: {
+                    email: "carlos@financeflow.mx",
+                    linkedin: "https://linkedin.com/in/carlosrod",
+                    website: "https://financeflow.mx"
+                },
+                available: true
+            },
+            {
+                id: "e3",
+                name: "Ana Martínez",
+                photoUrl: "https://picsum.photos/seed/ana/320/320",
+                role: "Founder",
+                company: "GreenBuild Solutions",
+                location: "Medellín, Colombia",
+                cluster: "Construction (CIIU F)",
+                tags: ["Sustainability", "Green Tech", "IoT"],
+                bio: "Transforming construction with sustainable materials and smart building technologies.",
+                contact: {
+                    email: "ana@greenbuild.co",
+                    linkedin: "https://linkedin.com/in/anamartinez",
+                    website: "https://greenbuild.co"
+                },
+                available: false
+            },
+            {
+                id: "e4",
+                name: "Luis Fernando Silva",
+                photoUrl: "https://picsum.photos/seed/luis/320/320",
+                role: "CEO",
+                company: "EduTech Latam",
+                location: "São Paulo, Brazil",
+                cluster: "Education (private) (CIIU P)",
+                tags: ["EdTech", "E-learning", "Mobile"],
+                bio: "Democratizing education through innovative mobile learning platforms.",
+                contact: {
+                    email: "luis@edutechlatam.br",
+                    linkedin: "https://linkedin.com/in/luissilva",
+                    website: "https://edutechlatam.br"
+                },
+                available: true
+            },
+            {
+                id: "e5",
+                name: "Patricia Vega",
+                photoUrl: "https://picsum.photos/seed/patricia/320/320",
+                role: "Founder & Designer",
+                company: "Creative Studio CO",
+                location: "Cali, Colombia",
+                cluster: "Arts, Entertainment & Recreation (CIIU R)",
+                tags: ["Design", "UX/UI", "Branding"],
+                bio: "Creating memorable brand experiences for startups across Latin America.",
+                contact: {
+                    email: "patricia@creativestudio.co",
+                    linkedin: "https://linkedin.com/in/patriciavega",
+                    website: "https://creativestudio.co"
+                },
+                available: true
+            },
+            {
+                id: "e6",
+                name: "Roberto Méndez",
+                photoUrl: "https://picsum.photos/seed/roberto/320/320",
+                role: "Founder",
+                company: "LogiTrans",
+                location: "Bogotá, Colombia",
+                cluster: "Transportation & Warehousing (CIIU H)",
+                tags: ["Logistics", "Supply Chain", "AI"],
+                bio: "Optimizing last-mile delivery with AI-powered route planning.",
+                contact: {
+                    email: "roberto@logitrans.co",
+                    linkedin: "https://linkedin.com/in/robertomendez",
+                    website: "https://logitrans.co"
+                },
+                available: false
+            },
+            {
+                id: "e7",
+                name: "Elena Gutiérrez",
+                photoUrl: "https://picsum.photos/seed/elena/320/320",
+                role: "CEO",
+                company: "HealthTech Solutions",
+                location: "Mexico City, Mexico",
+                cluster: "Health & Social Assistance (CIIU Q)",
+                tags: ["HealthTech", "Telemedicine", "AI"],
+                bio: "Connecting patients with healthcare providers through innovative telemedicine platforms.",
+                contact: {
+                    email: "elena@healthtech.mx",
+                    linkedin: "https://linkedin.com/in/elenagutierrez",
+                    website: "https://healthtech.mx"
+                },
+                available: true
+            },
+            {
+                id: "e8",
+                name: "Diego Ramírez",
+                photoUrl: "https://picsum.photos/seed/diego/320/320",
+                role: "Founder & CEO",
+                company: "FoodTech Innovations",
+                location: "Medellín, Colombia",
+                cluster: "Accommodation & Food Services (CIIU I)",
+                tags: ["FoodTech", "Delivery", "Mobile Apps"],
+                bio: "Revolutionizing food delivery with sustainable packaging and efficient logistics.",
+                contact: {
+                    email: "diego@foodtech.co",
+                    linkedin: "https://linkedin.com/in/diegoramirez",
+                    website: "https://foodtech.co"
+                },
+                available: true
+            },
+            {
+                id: "e9",
+                name: "Sofía López",
+                photoUrl: "https://picsum.photos/seed/sofia/320/320",
+                role: "CTO",
+                company: "DataAnalytics Pro",
+                location: "São Paulo, Brazil",
+                cluster: "Services – Professional, scientific & technical (CIIU M)",
+                tags: ["Big Data", "Analytics", "Machine Learning"],
+                bio: "Helping businesses make data-driven decisions with advanced analytics solutions.",
+                contact: {
+                    email: "sofia@dataanalytics.br",
+                    linkedin: "https://linkedin.com/in/sofialopez",
+                    website: "https://dataanalytics.br"
+                },
+                available: true
+            },
+            {
+                id: "e10",
+                name: "Miguel Ángel Torres",
+                photoUrl: "https://picsum.photos/seed/miguel/320/320",
+                role: "Founder",
+                company: "PropTech Solutions",
+                location: "Cali, Colombia",
+                cluster: "Services – Real estate (CIIU L)",
+                tags: ["PropTech", "Real Estate", "Blockchain"],
+                bio: "Digitizing real estate transactions with blockchain-powered smart contracts.",
+                contact: {
+                    email: "miguel@proptech.co",
+                    linkedin: "https://linkedin.com/in/migueltorres",
+                    website: "https://proptech.co"
+                },
+                available: false
+            },
+            {
+                id: "e11",
+                name: "Andrea Castillo",
+                photoUrl: "https://picsum.photos/seed/andrea/320/320",
+                role: "CEO",
+                company: "EcoCommerce",
+                location: "Bogotá, Colombia",
+                cluster: "Commerce (Wholesale & Retail)",
+                tags: ["E-commerce", "Sustainability", "Marketplace"],
+                bio: "Building a sustainable e-commerce platform for eco-friendly products.",
+                contact: {
+                    email: "andrea@ecocommerce.co",
+                    linkedin: "https://linkedin.com/in/andreacastillo",
+                    website: "https://ecocommerce.co"
+                },
+                available: true
+            },
+            {
+                id: "e12",
+                name: "Fernando Jiménez",
+                photoUrl: "https://picsum.photos/seed/fernando/320/320",
+                role: "Founder & CEO",
+                company: "ManufacTech",
+                location: "Mexico City, Mexico",
+                cluster: "Manufacturing (CIIU C)",
+                tags: ["Industry 4.0", "IoT", "Automation"],
+                bio: "Modernizing manufacturing processes with IoT and automation technologies.",
+                contact: {
+                    email: "fernando@manufactech.mx",
+                    linkedin: "https://linkedin.com/in/fernandojimenez",
+                    website: "https://manufactech.mx"
+                },
+                available: true
+            },
+            {
+                id: "e13",
+                name: "Valentina Morales",
+                photoUrl: "https://picsum.photos/seed/valentina/320/320",
+                role: "COO",
+                company: "ServiceHub",
+                location: "Medellín, Colombia",
+                cluster: "Services – Administrative & support (CIIU N)",
+                tags: ["HR Tech", "Automation", "SaaS"],
+                bio: "Streamlining administrative processes for SMEs with cloud-based solutions.",
+                contact: {
+                    email: "valentina@servicehub.co",
+                    linkedin: "https://linkedin.com/in/valentinamorales",
+                    website: "https://servicehub.co"
+                },
+                available: true
+            },
+            {
+                id: "e14",
+                name: "Ricardo Pérez",
+                photoUrl: "https://picsum.photos/seed/ricardo/320/320",
+                role: "Founder",
+                company: "PersonalCare Plus",
+                location: "São Paulo, Brazil",
+                cluster: "Other Personal Services (CIIU S)",
+                tags: ["Beauty Tech", "Booking", "Mobile"],
+                bio: "Connecting beauty professionals with customers through an innovative booking platform.",
+                contact: {
+                    email: "ricardo@personalcare.br",
+                    linkedin: "https://linkedin.com/in/ricardoperez",
+                    website: "https://personalcare.br"
+                },
+                available: false
+            },
+            {
+                id: "e15",
+                name: "Isabella Reyes",
+                photoUrl: "https://picsum.photos/seed/isabella/320/320",
+                role: "CEO & Founder",
+                company: "CloudFirst",
+                location: "Bogotá, Colombia",
+                cluster: "Information & Communications (CIIU J)",
+                tags: ["Cloud Computing", "DevOps", "Security"],
+                bio: "Helping businesses migrate to the cloud with secure and scalable solutions.",
+                contact: {
+                    email: "isabella@cloudfirst.co",
+                    linkedin: "https://linkedin.com/in/isabellareyes",
+                    website: "https://cloudfirst.co"
+                },
+                available: true
+            },
+            {
+                id: "e16",
+                name: "Javier Hernández",
+                photoUrl: "https://picsum.photos/seed/javier/320/320",
+                role: "CTO",
+                company: "InsureTech Now",
+                location: "Mexico City, Mexico",
+                cluster: "Finance & Insurance (CIIU K)",
+                tags: ["InsurTech", "AI", "Risk Management"],
+                bio: "Using AI to revolutionize risk assessment and insurance underwriting.",
+                contact: {
+                    email: "javier@insuretech.mx",
+                    linkedin: "https://linkedin.com/in/javierhernandez",
+                    website: "https://insuretech.mx"
+                },
+                available: true
+            },
+            {
+                id: "e17",
+                name: "Camila Suárez",
+                photoUrl: "https://picsum.photos/seed/camila/320/320",
+                role: "Founder",
+                company: "ArtSpace Digital",
+                location: "Cali, Colombia",
+                cluster: "Arts, Entertainment & Recreation (CIIU R)",
+                tags: ["Digital Art", "NFTs", "Virtual Reality"],
+                bio: "Creating immersive digital art experiences using VR and blockchain technology.",
+                contact: {
+                    email: "camila@artspace.co",
+                    linkedin: "https://linkedin.com/in/camilasuarez",
+                    website: "https://artspace.co"
+                },
+                available: true
+            },
+            {
+                id: "e18",
+                name: "Alberto Vargas",
+                photoUrl: "https://picsum.photos/seed/alberto/320/320",
+                role: "CEO",
+                company: "SmartEdu",
+                location: "São Paulo, Brazil",
+                cluster: "Education (private) (CIIU P)",
+                tags: ["AI Education", "Personalized Learning", "Analytics"],
+                bio: "Personalizing education through AI-powered adaptive learning platforms.",
+                contact: {
+                    email: "alberto@smartedu.br",
+                    linkedin: "https://linkedin.com/in/albertovargas",
+                    website: "https://smartedu.br"
+                },
+                available: false
+            },
+            {
+                id: "e19",
+                name: "Lucía Fernández",
+                photoUrl: "https://picsum.photos/seed/lucia/320/320",
+                role: "Founder & CEO",
+                company: "GreenTrans",
+                location: "Medellín, Colombia",
+                cluster: "Transportation & Warehousing (CIIU H)",
+                tags: ["Electric Vehicles", "Sustainability", "Urban Mobility"],
+                bio: "Leading the transition to sustainable urban transportation with electric vehicle solutions.",
+                contact: {
+                    email: "lucia@greentrans.co",
+                    linkedin: "https://linkedin.com/in/luciafernandez",
+                    website: "https://greentrans.co"
+                },
+                available: true
+            },
+            {
+                id: "e20",
+                name: "Pedro Sánchez",
+                photoUrl: "https://picsum.photos/seed/pedro/320/320",
+                role: "CTO & Co-founder",
+                company: "MediConnect",
+                location: "Bogotá, Colombia",
+                cluster: "Health & Social Assistance (CIIU Q)",
+                tags: ["Digital Health", "IoT", "Remote Monitoring"],
+                bio: "Enabling remote patient monitoring with IoT-powered healthcare devices.",
+                contact: {
+                    email: "pedro@mediconnect.co",
+                    linkedin: "https://linkedin.com/in/pedrosanchez",
+                    website: "https://mediconnect.co"
+                },
+                available: true
+            }
+        ];
+
+        // State Management
+        let currentView = 'landing';
+        let currentCluster = null;
+        let filteredEntrepreneurs = [...entrepreneurs];
+        let selectedEntrepreneur = null;
+
+        // Initialize the application
+        function init() {
+            renderClusters();
+            renderFeaturedEntrepreneurs();
+        }
+
+        // Render Clusters
+        function renderClusters() {
+            const clusterGrid = document.getElementById('cluster-grid');
+            if (!clusterGrid) return;
+            
+            clusterGrid.innerHTML = clusters.map(cluster => {
+                const count = entrepreneurs.filter(e => e.cluster === cluster.name).length;
+                return `
+                    <div class="cluster-card" onclick="showClusterDetail('${cluster.name.replace(/'/g, "\\'")}')" tabindex="0" 
+                         onkeypress="if(event.key==='Enter') showClusterDetail('${cluster.name.replace(/'/g, "\\'")}')"
+                         role="button" aria-label="View ${cluster.name} cluster">
+                        <div class="cluster-icon">${cluster.icon}</div>
+                        <h3 class="cluster-name">${cluster.name}</h3>
+                        <p class="cluster-count">${count} entrepreneurs</p>
+                        <span class="source-tag">${cluster.source}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render Featured Entrepreneurs
+        function renderFeaturedEntrepreneurs() {
+            const entrepreneurScroll = document.getElementById('entrepreneur-scroll');
+            if (!entrepreneurScroll) return;
+            
+            const featured = filteredEntrepreneurs.slice(0, 10);
+            entrepreneurScroll.innerHTML = featured.map(entrepreneur => 
+                createEntrepreneurCard(entrepreneur)
+            ).join('');
+        }
+
+        // Create Entrepreneur Card
+        function createEntrepreneurCard(entrepreneur) {
+            return `
+                <div class="entrepreneur-card" onclick="showProfile('${entrepreneur.id}')" tabindex="0"
+                     onkeypress="if(event.key==='Enter') showProfile('${entrepreneur.id}')"
+                     role="button" aria-label="View profile of ${entrepreneur.name}">
+                    <div class="entrepreneur-header">
+                        <img src="${entrepreneur.photoUrl}" alt="${entrepreneur.name}" class="entrepreneur-avatar">
+                        <div class="entrepreneur-info">
+                            <div class="entrepreneur-name">${entrepreneur.name}</div>
+                            <div class="entrepreneur-role">${entrepreneur.role}</div>
+                            <div class="entrepreneur-company">${entrepreneur.company}</div>
+                        </div>
+                    </div>
+                    <p class="entrepreneur-bio">${entrepreneur.bio}</p>
+                    <div class="entrepreneur-tags">
+                        ${entrepreneur.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn" onclick="event.stopPropagation(); showProfile('${entrepreneur.id}')">Email</button>
+                        <button class="contact-btn" onclick="event.stopPropagation(); showProfile('${entrepreneur.id}')">LinkedIn</button>
+                        <button class="contact-btn" onclick="event.stopPropagation(); showProfile('${entrepreneur.id}')">Website</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show Cluster Detail
+        function showClusterDetail(clusterName) {
+            currentCluster = clusterName;
+            currentView = 'cluster';
+            
+            const landingPage = document.getElementById('landing-page');
+            const clusterDetail = document.getElementById('cluster-detail');
+            
+            if (landingPage) landingPage.style.display = 'none';
+            if (clusterDetail) {
+                clusterDetail.style.display = 'block';
+                clusterDetail.classList.add('active');
+            }
+            
+            document.getElementById('cluster-title').textContent = clusterName;
+            document.getElementById('breadcrumb-cluster').textContent = clusterName;
+            
+            const clusterEntrepreneurs = entrepreneurs.filter(e => e.cluster === clusterName);
+            document.getElementById('cluster-count').textContent = clusterEntrepreneurs.length;
+            
+            renderClusterEntrepreneurs(clusterEntrepreneurs);
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Render Cluster Entrepreneurs
+        function renderClusterEntrepreneurs(entrepreneursList) {
+            const container = document.getElementById('cluster-entrepreneurs');
+            if (!container) return;
+            
+            container.innerHTML = entrepreneursList.map(entrepreneur => 
+                createEntrepreneurCard(entrepreneur)
+            ).join('');
+        }
+
+        // Show Landing Page
+        function showLanding() {
+            currentView = 'landing';
+            const landingPage = document.getElementById('landing-page');
+            const clusterDetail = document.getElementById('cluster-detail');
+            
+            if (landingPage) landingPage.style.display = 'block';
+            if (clusterDetail) {
+                clusterDetail.style.display = 'none';
+                clusterDetail.classList.remove('active');
+            }
+            
+            window.scrollTo(0, 0);
+            return false;
+        }
+
+        // Show Profile Modal
+        function showProfile(entrepreneurId) {
+            selectedEntrepreneur = entrepreneurs.find(e => e.id === entrepreneurId);
+            if (!selectedEntrepreneur) return;
+            
+            const modal = document.getElementById('profile-modal');
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            
+            document.getElementById('modal-avatar').src = selectedEntrepreneur.photoUrl;
+            document.getElementById('modal-avatar').alt = selectedEntrepreneur.name;
+            document.getElementById('modal-name').textContent = selectedEntrepreneur.name;
+            document.getElementById('modal-role').textContent = selectedEntrepreneur.role;
+            document.getElementById('modal-company').textContent = selectedEntrepreneur.company;
+            document.getElementById('modal-bio').textContent = selectedEntrepreneur.bio;
+            
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = selectedEntrepreneur.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('');
+            
+            const contactsContainer = document.getElementById('modal-contacts');
+            contactsContainer.innerHTML = `
+                <button class="contact-btn">Email</button>
+                <button class="contact-btn">LinkedIn</button>
+                <button class="contact-btn">Website</button>
+            `;
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('profile-modal');
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Copy Contact Info
+        function copyContactInfo() {
+            if (!selectedEntrepreneur) return;
+            
+            const contactInfo = `
+Name: ${selectedEntrepreneur.name}
+Role: ${selectedEntrepreneur.role}
+Company: ${selectedEntrepreneur.company}
+Email: ${selectedEntrepreneur.contact.email}
+LinkedIn: ${selectedEntrepreneur.contact.linkedin}
+Website: ${selectedEntrepreneur.contact.website}
+            `.trim();
+            
+            // Simulate copying (in real app, would use clipboard API)
+            showToast();
+        }
+
+        // Show Toast Notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Search Functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('hero-search').value.toLowerCase();
+            if (!searchTerm) {
+                filteredEntrepreneurs = [...entrepreneurs];
+            } else {
+                filteredEntrepreneurs = entrepreneurs.filter(e => 
+                    e.name.toLowerCase().includes(searchTerm) ||
+                    e.company.toLowerCase().includes(searchTerm) ||
+                    e.cluster.toLowerCase().includes(searchTerm) ||
+                    e.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            renderFeaturedEntrepreneurs();
+        }
+
+        // Filter Entrepreneurs
+        function filterEntrepreneurs() {
+            const location = document.getElementById('location-filter').value;
+            const tag = document.getElementById('tag-filter').value;
+            const availability = document.getElementById('availability-filter').value;
+            
+            filteredEntrepreneurs = entrepreneurs.filter(e => {
+                const matchesLocation = !location || e.location === location;
+                const matchesTag = !tag || e.tags.includes(tag);
+                const matchesAvailability = !availability || 
+                    (availability === 'yes' && e.available) || 
+                    (availability === 'no' && !e.available);
+                
+                return matchesLocation && matchesTag && matchesAvailability;
+            });
+            
+            renderFeaturedEntrepreneurs();
+        }
+
+        // Filter Cluster Entrepreneurs
+        function filterClusterEntrepreneurs() {
+            const role = document.getElementById('role-filter').value;
+            let clusterEntrepreneurs = entrepreneurs.filter(e => e.cluster === currentCluster);
+            
+            if (role) {
+                clusterEntrepreneurs = clusterEntrepreneurs.filter(e => e.role.includes(role));
+            }
+            
+            renderClusterEntrepreneurs(clusterEntrepreneurs);
+        }
+
+        // Sort Entrepreneurs
+        function sortEntrepreneurs() {
+            const sortBy = document.getElementById('sort-filter').value;
+            let clusterEntrepreneurs = entrepreneurs.filter(e => e.cluster === currentCluster);
+            
+            if (sortBy === 'alpha') {
+                clusterEntrepreneurs.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            
+            renderClusterEntrepreneurs(clusterEntrepreneurs);
+        }
+
+        // Scroll to Clusters
+        function scrollToClusters() {
+            document.getElementById('clusters').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal click outside to close
+        window.onclick = function(event) {
+            const modal = document.getElementById('profile-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
